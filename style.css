@@ -1,0 +1,165 @@
+html {
+  background: rgb(62, 132, 187);
+  background: -moz-radial-gradient(circle, rgba(62, 132, 187, 1) 34%, rgba(0, 212, 255, 1) 100%);
+  background: -webkit-radial-gradient(circle, rgba(62, 132, 187, 1) 34%, rgba(0, 212, 255, 1) 100%);
+  background: radial-gradient(circle, rgba(62, 132, 187, 1) 34%, rgba(0, 212, 255, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3e84bb",endColorstr="#00d4ff",GradientType=1);
+  /* https://cssgradient.io/ */
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.header {
+  width: 360px;
+  margin: 10% auto 0 auto;
+  padding: 10px;
+  color: white;
+  font-family: "Satisfy", cursive;
+  font-size: 2.5em;
+}
+
+.container {
+  width: 380px;
+  margin: 0 auto;
+  padding: 0;
+  background-color: white;
+  box-shadow: 0 10px 6px -6px #777;
+}
+
+/* ==================INPUT================== */
+
+.inputWrapper {
+  background-color: rgba(70, 130, 180, 0.5);
+  transition: all 0.1s ease-in-out;
+  outline: none;
+}
+.inputWrapper:hover {
+  border: 3px solid rgb(0, 255, 234);
+  background-color: white;
+}
+
+input {
+  width: 85%;
+  margin: 0;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1em;
+}
+input:focus {
+  border: none;
+  outline: none;
+}
+
+/* ==================ADD BUTTON================== */
+.add {
+  border: none;
+  font-size: 1.1em;
+  background-color: transparent;
+  outline: none;
+}
+
+.add:hover {
+  background-color: transparent;
+  color: steelblue;
+  border: none;
+  outline: none;
+}
+
+.fa-plus-circle {
+  background-color: transparent;
+  color: steelblue;
+  transition: all 1s ease 0s;
+}
+.fa-plus-circle:hover {
+  background-color: transparent;
+  color: steelblue;
+  transform: scale(1.5);
+}
+
+/* ==================UL================== */
+
+.notes {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* ==================CLEAR BUTTON================== */
+
+.clear {
+  color: white;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  float: right;
+  font-size: 1.5em;
+  font-family: "Satisfy", cursive;
+  transition: all 0.1s ease;
+}
+.clear:hover {
+  outline: none;
+  transform: scale(1.1);
+}
+
+/* ==================DELETE LI BUTTON================== */
+
+.del {
+  float: right;
+  border: none;
+  background-color: transparent;
+}
+
+.del:focus {
+  outline: none;
+}
+
+.fa-trash-alt {
+  color: steelblue;
+  font-size: 1.2em;
+  transition: all 1s ease 0s;
+}
+
+.fa-trash-alt:hover {
+  transform: rotate(45deg);
+}
+
+/* ==================LI================== */
+li {
+  margin: 5px 0;
+}
+
+hr {
+  background-color: #0096ff;
+  opacity: 0.2;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+/* ==================FOOTER================== */
+
+.footer {
+  margin: 10em auto;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  margin-top: 0;
+}
