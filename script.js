@@ -1,5 +1,5 @@
 const container = document.querySelector(".container");
-const input = document.querySelector("input");
+const input = document.querySelector(".inputText");
 const del = document.querySelector(".del");
 const add = document.querySelector(".add");
 const ul = document.querySelector("ul");
@@ -15,8 +15,8 @@ container.addEventListener("click", function (event) {
       addItem();
     } else if (event.target.className === "far fa-trash-alt") {
       ul.removeChild(event.target.parentElement.parentElement);
-    } else if (event.target.tagName === "LI") {
-      event.target.classList.toggle("completed");
+    } else if (event.target.className === "checkbox") {
+      event.target.nextElementSibling.classList.toggle("completed");
     }
   }
 
@@ -37,17 +37,26 @@ function addItem() {
     let hr = document.createElement("hr");
     let btn = document.createElement("button");
     let icon = document.createElement("i");
-
-    li.textContent = input.value;
-    li.setAttribute("draggable", "true");
+    let checkbox = document.createElement("input");
+    let span = document.createElement("span");
 
     btn.classList.add("del");
     icon.classList.add("far");
     icon.classList.add("fa-trash-alt");
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.classList.add("checkbox");
+
+    li.setAttribute("draggable", "true");
 
     btn.appendChild(icon);
+    li.appendChild(checkbox);
+    let text = document.createTextNode(input.value);
+    span.appendChild(text);
+    span.classList.add("text");
+    li.appendChild(span);
     li.appendChild(btn);
     li.appendChild(hr);
+
     ul.appendChild(li);
 
     input.value = "";
@@ -60,21 +69,34 @@ function addItem() {
 
 // ================ DRAG&DROP ================
 
+let isChecked = false;
 function allowDrop(e) {
   e.preventDefault();
 }
 
 function dragStart(e) {
+  //start point
   dragSrcEl = this;
+  const span = this.querySelector("span");
   e.dataTransfer.effectAllowed = "move";
   e.dataTransfer.setData("text/html", this.innerHTML);
+  if (span.classList.contains("completed")) {
+    isChecked = true;
+  }
 }
 
 function drop(e) {
+  //end point
   e.stopPropagation();
   if (dragSrcEl !== this) {
     dragSrcEl.innerHTML = this.innerHTML;
     this.innerHTML = e.dataTransfer.getData("text/html");
+  }
+  if (isChecked) {
+    const span = this.querySelector("span");
+
+    span.classList.add("completed");
+    this.firstChild.checked = true;
   }
 
   return false;
@@ -88,7 +110,14 @@ function dragEnter(e) {
   this.style.border = "none";
 }
 function dragEnd(e) {
+  // li - start point
   this.style.border = "none";
+
+  if (isChecked) {
+    const span = this.querySelector("span");
+
+    span.classList.remove("completed");
+  }
 }
 
 function dragAndDrop() {
@@ -101,4 +130,6 @@ function dragAndDrop() {
     item.addEventListener("dragenter", dragEnter, false);
     item.addEventListener("dragend", dragEnd, false);
   });
+
+  isChecked = false;
 }

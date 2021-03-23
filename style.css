@@ -40,7 +40,7 @@ body {
   background-color: white;
 }
 
-input {
+.inputText {
   width: 85%;
   margin: 0;
   padding: 10px;
@@ -49,7 +49,7 @@ input {
   font-family: "Open Sans", sans-serif;
   font-size: 1em;
 }
-input:focus {
+.inputText:focus {
   border: none;
   outline: none;
 }
@@ -135,15 +135,26 @@ ul {
 /* ==================LI================== */
 li {
   margin: 5px 0;
+  cursor: pointer;
 }
 
 hr {
   background-color: #0096ff;
   opacity: 0.2;
 }
-
+.checkbox {
+  margin-right: 5px;
+}
 .completed {
   text-decoration: line-through;
+}
+.text {
+  display: inline-block;
+  width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: -3px;
 }
 
 /* ==================FOOTER================== */
