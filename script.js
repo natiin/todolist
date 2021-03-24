@@ -69,54 +69,39 @@ function addItem() {
 
 // ================ DRAG&DROP ================
 
-let isChecked = false;
-function allowDrop(e) {
-  e.preventDefault();
-}
+let dragSrcEl;
 
 function dragStart(e) {
-  //start point
   dragSrcEl = this;
-  const span = this.querySelector("span");
   e.dataTransfer.effectAllowed = "move";
   e.dataTransfer.setData("text/html", this.innerHTML);
-  if (span.classList.contains("completed")) {
-    isChecked = true;
-  }
-}
-
-function drop(e) {
-  //end point
-  e.stopPropagation();
-  if (dragSrcEl !== this) {
-    dragSrcEl.innerHTML = this.innerHTML;
-    this.innerHTML = e.dataTransfer.getData("text/html");
-  }
-  if (isChecked) {
-    const span = this.querySelector("span");
-
-    span.classList.add("completed");
-    this.firstChild.checked = true;
-  }
-
-  return false;
 }
 
 function drag(e) {
   this.style.border = "1px dashed steelblue";
 }
 
-function dragEnter(e) {
+function dragEnd(e) {
   this.style.border = "none";
 }
-function dragEnd(e) {
-  // li - start point
-  this.style.border = "none";
 
-  if (isChecked) {
-    const span = this.querySelector("span");
+function dragEnter(e) {
+  e.preventDefault();
+}
+function allowDrop(e) {
+  e.preventDefault();
+}
 
-    span.classList.remove("completed");
+function drop(e) {
+  e.stopPropagation();
+  if (dragSrcEl !== this) {
+    dragSrcEl.innerHTML = this.innerHTML;
+    this.innerHTML = e.dataTransfer.getData("text/html");
+  }
+  const span = this.querySelector("span");
+  if (span.classList.contains("completed")) {
+    const checkbox = this.querySelector(".checkbox");
+    checkbox.checked = true;
   }
 }
 
@@ -130,6 +115,4 @@ function dragAndDrop() {
     item.addEventListener("dragenter", dragEnter, false);
     item.addEventListener("dragend", dragEnd, false);
   });
-
-  isChecked = false;
 }
