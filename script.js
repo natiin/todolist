@@ -98,11 +98,8 @@ function drop(e) {
     dragSrcEl.innerHTML = this.innerHTML;
     this.innerHTML = e.dataTransfer.getData("text/html");
   }
-  const span = this.querySelector("span");
-  if (span.classList.contains("completed")) {
-    const checkbox = this.querySelector(".checkbox");
-    checkbox.checked = true;
-  }
+  checkIfChecked(this);
+  checkIfChecked(dragSrcEl);
 }
 
 function dragAndDrop() {
@@ -115,4 +112,13 @@ function dragAndDrop() {
     item.addEventListener("dragenter", dragEnter, false);
     item.addEventListener("dragend", dragEnd, false);
   });
+}
+
+function checkIfChecked(el) {
+  //helper function support drag and drop for checked checkboxes
+  const span = el.querySelector("span");
+  if (span.classList.contains("completed")) {
+    const checkbox = el.querySelector(".checkbox");
+    return (checkbox.checked = true);
+  }
 }
